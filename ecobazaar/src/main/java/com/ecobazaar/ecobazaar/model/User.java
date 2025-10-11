@@ -1,5 +1,5 @@
 package com.ecobazaar.ecobazaar.model;
-
+//Initial Commit
 import jakarta.persistence.*;
 
 @Entity
