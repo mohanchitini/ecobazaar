@@ -17,7 +17,4 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	
 	@Query("SELECT SUM(o.totalCarbon) from Order o where o.userId = :userId")
 	Double getTotalCarbonByUser(Long userId);
-	
-	
-
 }

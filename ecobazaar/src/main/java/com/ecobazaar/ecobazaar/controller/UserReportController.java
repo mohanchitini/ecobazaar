@@ -24,6 +24,4 @@ public class UserReportController {
     public UserReport getUserReport(@PathVariable Long id) {
     	return userReportService.getUserReport(id);
     }
-
-
 }
