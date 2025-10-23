@@ -63,5 +63,4 @@ public class UserReportService {
 				return "🚫 No Impact Yet";
 			}
 	}
-
 }
