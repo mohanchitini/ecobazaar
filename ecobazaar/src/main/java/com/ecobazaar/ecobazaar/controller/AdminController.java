@@ -48,4 +48,3 @@ public class AdminController {
 		return adminService.generateReportCSV();
 	}
 }
-
