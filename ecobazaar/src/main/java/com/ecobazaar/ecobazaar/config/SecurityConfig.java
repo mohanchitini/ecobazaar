@@ -19,9 +19,9 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
                 .anyRequest().authenticated()
             );
-
         return http.build();
     }
+    
 //  @Bean
 //    public InMemoryUserDetailsManager userDetailsService() {
 //    	UserDetails admin = User.withUsername("admin")
