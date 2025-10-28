@@ -1,26 +1,35 @@
 package com.ecobazaar.ecobazaar.config;
 
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.ecobazaar.ecobazaar.model.User;
 import com.ecobazaar.ecobazaar.repository.UserRepository;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
-@Component   // Spring will detect this automatically
-public class DataLoader implements CommandLineRunner {
+@Configuration
+public class DataLoader {
+	
+	@Bean
+	CommandLineRunner loadData(UserRepository userRepository, PasswordEncoder encoder) {
+		return args->{
+			if(userRepository.findByEmail("admin@ecobazzar.com").isEmpty()) {
+				User admin = new User();
+				admin.setName("Admin");
+				admin.setEmail("admin@ecobazzar.com");
+				admin.setPassword(encoder.encode("Admin@123"));
+				admin.setRole("ROLE_ADMIN");
+				admin.setEcoScore(0);
+				userRepository.save(admin);
+				
+				System.out.println("Admin Created Successfully: admin@ecobazzar.com/Admin@123");
+			
+			}else {
+				System.out.println("Admin user already exists");
+			}
+		};
+	}
 
-    private final UserRepository repo;
-
-    public DataLoader(UserRepository repo) {
-        this.repo = repo;
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        if (repo.count() == 0) {   // only insert if empty
-            User u = new User(null, "Alice", "alice@example.com",
-                              "12345", "FARMER", 50,1,"124rdetfg");
-            repo.save(u);
-            System.out.println("✅ User inserted into DB");
-        }
-    }
 }
