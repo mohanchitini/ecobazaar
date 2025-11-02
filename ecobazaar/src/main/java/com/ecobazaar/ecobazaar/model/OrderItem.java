@@ -1,67 +1,38 @@
 package com.ecobazaar.ecobazaar.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "order_items")
 public class OrderItem {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private Long orderId;
-	
-	private Long productId;
-	
-	private int quantity;
-	
-	public OrderItem() {}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public OrderItem(Long id, Long orderId, Long productId, int quantity) {
-		super();
-		this.id = id;
-		this.orderId = orderId;
-		this.productId = productId;
-		this.quantity = quantity;
-	}
+    private Long orderId;
+    private Long productId;
+    private int quantity;
 
-	public Long getId() {
-		return id;
-	}
+    public OrderItem() {}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public OrderItem(Long id, Long orderId, Long productId, int quantity) {
+        this.id = id;
+        this.orderId = orderId;
+        this.productId = productId;
+        this.quantity = quantity;
+    }
 
-	public Long getOrderId() {
-		return orderId;
-	}
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
-	}
+    public Long getOrderId() { return orderId; }
+    public void setOrderId(Long orderId) { this.orderId = orderId; }
 
-	public Long getProductId() {
-		return productId;
-	}
+    public Long getProductId() { return productId; }
+    public void setProductId(Long productId) { this.productId = productId; }
 
-	public void setProductId(Long productId) {
-		this.productId = productId;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	
-		
-	}
-	
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 }
+
