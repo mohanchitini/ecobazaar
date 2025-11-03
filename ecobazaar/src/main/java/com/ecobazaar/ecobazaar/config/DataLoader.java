@@ -23,7 +23,6 @@ public class DataLoader {
 				admin.setRole("ROLE_ADMIN");
 				admin.setEcoScore(0);
 				userRepository.save(admin);
-				
 				System.out.println("Admin Created Successfully: admin@ecobazzar.com/Admin@123");
 			
 			}else {

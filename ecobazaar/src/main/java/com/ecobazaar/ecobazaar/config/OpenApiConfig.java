@@ -16,6 +16,7 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI ecoBazaarOpenAPI() {
         return new OpenAPI()
+                // 🔐 Add JWT security scheme so you can test protected APIs
                 .addSecurityItem(new SecurityRequirement().addList("BearerAuth"))
                 .components(new Components()
                         .addSecuritySchemes("BearerAuth",
@@ -25,6 +26,7 @@ public class OpenApiConfig {
                                         .scheme("bearer")
                                         .bearerFormat("JWT")
                         ))
+                // ℹ️ Add basic API info shown at top of Swagger page
                 .info(new Info()
                         .title("🌿 EcoBazaar API Documentation")
                         .description("REST API documentation for EcoBazaar — your eco-friendly shopping backend.")
