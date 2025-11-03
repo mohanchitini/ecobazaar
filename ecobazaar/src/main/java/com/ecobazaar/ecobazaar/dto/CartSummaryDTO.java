@@ -56,8 +56,4 @@ public class CartSummaryDTO {
 	public void setEcoSuggestion(String ecoSuggestion) {
 		this.ecoSuggestion = ecoSuggestion;
 	}
-	
-	
-	
-	
 }

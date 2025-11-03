@@ -24,11 +24,6 @@ public class RegisterRequest {
         this.email = email;
         this.password = password;
     }
-
-
-
-
-
 public String getName() {
 	return name;
 }
@@ -52,7 +47,4 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-	
-
-	
 }

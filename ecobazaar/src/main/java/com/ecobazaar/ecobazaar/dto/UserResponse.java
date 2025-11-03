@@ -70,7 +70,4 @@ public class UserResponse {
 	public void setEcoScore(Integer ecoScore) {
 		this.ecoScore = ecoScore;
 	}
-	
-	
-
 }

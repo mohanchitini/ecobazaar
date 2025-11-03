@@ -48,4 +48,3 @@ public class ProductService {
         return productRepository.findByEcoCertifiedTrueOrderByCarbonImpactAsc();
     }
 }
-
