@@ -17,12 +17,13 @@ public class DataLoader {
 		return args->{
 			if(userRepository.findByEmail("admin@ecobazzar.com").isEmpty()) {
 				User admin = new User();
-				admin.setName("Role_Admin");
+				admin.setName("Default_Admin");
 				admin.setEmail("admin@ecobazzar.com");
 				admin.setPassword(encoder.encode("Admin@123"));
 				admin.setRole("ROLE_ADMIN");
 				admin.setEcoScore(0);
 				userRepository.save(admin);
+				
 				System.out.println("Admin Created Successfully: admin@ecobazzar.com/Admin@123");
 			
 			}else {
