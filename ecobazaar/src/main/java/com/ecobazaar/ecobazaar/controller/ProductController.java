@@ -8,18 +8,22 @@ import org.springframework.web.bind.annotation.*;
 
 import com.ecobazaar.ecobazaar.model.Product;
 import com.ecobazaar.ecobazaar.model.User;
+import com.ecobazaar.ecobazaar.repository.ProductRepository;
 import com.ecobazaar.ecobazaar.repository.UserRepository;
 import com.ecobazaar.ecobazaar.service.ProductService;
 
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
+
+    private final ProductRepository productRepository;
     private final ProductService productService;
     private final UserRepository userRepository;
 
-    public ProductController(ProductService productService, UserRepository userRepository) {
+    public ProductController(ProductService productService, UserRepository userRepository, ProductRepository productRepository) {
         this.productService = productService;
         this.userRepository = userRepository;
+        this.productRepository = productRepository;
     }
 
     @PreAuthorize("hasAnyRole('SELLER','ADMIN')")
@@ -88,5 +92,29 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void deleteProductDetails(@PathVariable Long id) {
         productService.deleteProductDetails(id);
+    }
+    
+    @GetMapping("/ai/suggestions")
+    @PreAuthorize("hasRole('USER')")  
+    public List<Product> getAiEcoSuggestions(@RequestParam("productId") Long productId) {
+        Product current = productService.getProductById(productId);
+
+        if (Boolean.TRUE.equals(current.getEcoCertified())) {
+            return List.of();
+        }
+
+        String searchTerm = extractKeyword(current.getName());
+
+        return productRepository.findByEcoCertifiedTrueAndNameContainingIgnoreCase(searchTerm)
+                .stream()
+                .filter(p -> !p.getId().equals(productId))
+                .limit(4)
+                .toList();
+    }
+
+    private String extractKeyword(String name) {
+        if (name == null || name.isBlank()) return "";
+        String[] words = name.toLowerCase().split("\\s+");
+        return words.length > 0 ? words[words.length - 1].replaceAll("[^a-z]", "") : "";
     }
 }
