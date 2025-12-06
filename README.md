@@ -1,6 +1,6 @@
-# EcoBazzar
+# EcoBazaar
 
-EcoBazzar is a full-stack web application built using **Spring Boot** for the backend and **Angular** for the frontend.  
+EcoBazaar is a full-stack web application built using **Spring Boot** for the backend and **Angular** for the frontend.  
 The backend handles APIs, authentication, and database operations, while the frontend provides a responsive user interface.
 
 ---
